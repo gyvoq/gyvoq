@@ -154,10 +154,12 @@ pt:{title:"GYVOQ — Editor de Vídeo Profissional",nav_about:"Sobre",nav_portfo
 
 function detectLang(){
 try{var s=localStorage.getItem("gyvoq-lang");if(s&&T[s])return s}catch(e){}
-var l=(navigator.languages&&navigator.languages[0])||navigator.language||"";
-if(/^pt/i.test(l))return"pt";
-try{var tz=Intl.DateTimeFormat().resolvedOptions().timeZone||"";
-if(/^America\/(Sao_Paulo|Bahia|Fortaleza|Recife|Belem|Manaus|Cuiaba|Campo_Grande|Porto_Velho|Rio_Branco|Boa_Vista|Santarem|Maceio|Araguaina|Eirunepe|Noronha)$/.test(tz))return"pt"}catch(e){}
+var list=(navigator.languages&&navigator.languages.length)?navigator.languages:[navigator.language||""];
+for(var i=0;i<list.length;i++){
+var c=String(list[i]).toLowerCase().slice(0,2);
+if(c==="pt")return"pt";
+if(c==="en")return"en";
+}
 return"en"}
 
 function setLang(lang,save){
