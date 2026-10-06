@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>GYVOQ — Professional Video Editor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07050C;--panel:#110C1C;--line:#2A1F42;--ink:#F4F0FB;--mute:#A99FC0;--p:#8B5CF6;--p2:#B79BFF;--font:"Inter",system-ui,-apple-system,sans-serif;--gap:24px;--pad:clamp(18px,4vw,32px)}
+html{scroll-behavior:smooth;scroll-padding-top:76px;color-scheme:dark;background:var(--bg);-webkit-text-size-adjust:100%}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 clamp(16px,1.2vw + 12px,18px)/1.7 var(--font);padding-bottom:env(safe-area-inset-bottom,0px)}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--p2);outline-offset:3px}
+.wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 var(--pad)}
+
+header{position:sticky;top:0;z-index:10;background:rgba(7,5,12,.88);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+header .wrap{display:flex;justify-content:space-between;align-items:center;height:64px}
+.logo{font-weight:600;font-size:20px;letter-spacing:.04em}
+.right{display:flex;align-items:center;gap:10px}
+.lang{display:flex;gap:6px}
+.lang button{display:flex;align-items:center;gap:7px;min-height:40px;padding:0 12px;border-radius:999px;border:1.5px solid var(--line);background:none;color:var(--mute);font:600 13px var(--font);cursor:pointer;transition:border-color .2s,color .2s,background .2s}
+.lang button:hover{border-color:var(--p);color:var(--ink)}
+.lang button[aria-pressed=true]{border-color:var(--p);background:rgba(139,92,246,.18);color:var(--ink)}
+.lang svg{width:22px;height:15px;border-radius:3px;display:block;flex:none}
+nav{display:flex;gap:6px;font-weight:600;font-size:15px;color:var(--mute)}
+nav a{padding:10px 14px;border-radius:999px;min-height:44px;display:flex;align-items:center}
+nav a:hover{color:var(--p2);background:rgba(139,92,246,.12)}
+
+.hero{min-height:calc(100svh - 64px);min-height:calc(100vh - 64px);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:64px var(--pad)}
+h1{font-weight:600;font-size:clamp(56px,17vw,176px);line-height:.95;letter-spacing:-.04em;margin:0;background:linear-gradient(180deg,#fff 30%,var(--p2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.role{font-weight:600;font-size:clamp(12px,3.2vw,15px);letter-spacing:.3em;color:var(--p2);margin:22px 0 14px}
+.tag{max-width:46ch;color:var(--mute);font-size:clamp(16px,2.4vw,20px);margin:0 0 34px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;background:var(--p);color:#fff;padding:0 30px;border-radius:999px;border:1.5px solid var(--p);font:600 16px var(--font);cursor:pointer;transition:background .2s}
+.btn:hover{background:#A07BFF}
+.btn.ghost{background:none;color:var(--p2)}
+.btn.ghost:hover{background:rgba(139,92,246,.15)}
+
+section{padding:clamp(56px,9vw,100px) 0 0}
+h2{font-weight:600;font-size:clamp(30px,5vw,48px);letter-spacing:-.02em;margin:0 0 22px;line-height:1.1}
+
+.about{display:grid;grid-template-columns:1.7fr 1fr;gap:clamp(28px,5vw,56px);align-items:start}
+.about p{margin:0;color:var(--mute);max-width:62ch}
+.stats{display:grid;gap:16px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px 24px}
+.stat b{display:block;font-weight:600;font-size:clamp(36px,5vw,48px);line-height:1.1;color:var(--p2)}
+.stat span{color:var(--mute);font-size:13px;letter-spacing:.12em}
+
+/* portfolio: vertical à esquerda, 4 horizontais à direita */
+.vids{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:var(--gap);align-items:start}
+.hz{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gap)}
+.frame{position:relative;width:100%;height:0;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#000}
+.frame.vt{padding-top:177.78%}
+.frame.h{padding-top:75%}
+.frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid h3{font-weight:600;font-size:17px;margin:10px 0 0}
+
+.contact{text-align:center;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:clamp(36px,7vw,64px) var(--pad);margin-top:clamp(56px,9vw,100px)}
+.contact p{color:var(--mute);margin:0 0 28px}
+.contact .row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+footer{text-align:center;color:var(--mute);font-size:14px;padding:44px var(--pad) 40px}
+
+@media(max-width:900px){
+.vids{grid-template-columns:1fr}
+.vid.v{max-width:320px;width:100%;margin:0 auto}
+}
+@media(max-width:720px){
+.about{grid-template-columns:1fr}
+.stats{grid-template-columns:1fr 1fr;gap:12px}
+.stat{padding:16px 18px}
+}
+@media(max-width:560px){
+html{scroll-padding-top:112px}
+header .wrap{flex-wrap:wrap;height:auto;padding-top:10px;padding-bottom:6px;row-gap:2px}
+.right{display:contents}
+.lang{order:2}
+nav{order:3;width:100%;justify-content:center}
+.lang button{padding:0 10px}
+nav a{padding:10px 12px}
+.hz{grid-template-columns:1fr}
+.contact .row{flex-direction:column}
+.contact .btn{width:100%}
+.hero .btn{width:100%;max-width:320px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><a class="logo" href="#top">GYVOQ</a>
+<div class="right"><nav><a href="#about" data-i18n="nav_about">About</a><a href="#portfolio" data-i18n="nav_portfolio">Portfolio</a><a href="#contact" data-i18n="nav_contact">Contact</a></nav>
+<div class="lang" role="group" aria-label="Language"><button type="button" data-lang="en" aria-pressed="true" aria-label="English"><svg viewBox="0 0 19 10" aria-hidden="true"><rect width="19" height="10" fill="#fff"/><g fill="#B22234"><rect width="19" height=".77"/><rect y="1.54" width="19" height=".77"/><rect y="3.08" width="19" height=".77"/><rect y="4.62" width="19" height=".77"/><rect y="6.15" width="19" height=".77"/><rect y="7.69" width="19" height=".77"/><rect y="9.23" width="19" height=".77"/></g><rect width="7.6" height="5.4" fill="#3C3B6E"/><g fill="#fff"><circle cx="1.3" cy="1.1" r=".38"/><circle cx="3.8" cy="1.1" r=".38"/><circle cx="6.3" cy="1.1" r=".38"/><circle cx="2.5" cy="2.7" r=".38"/><circle cx="5" cy="2.7" r=".38"/><circle cx="1.3" cy="4.3" r=".38"/><circle cx="3.8" cy="4.3" r=".38"/><circle cx="6.3" cy="4.3" r=".38"/></g></svg><span>EN</span></button><button type="button" data-lang="pt" aria-pressed="false" aria-label="Português"><svg viewBox="0 0 20 14" aria-hidden="true"><rect width="20" height="14" fill="#009C3B"/><path d="M10 1.6 18.2 7 10 12.4 1.8 7z" fill="#FFDF00"/><circle cx="10" cy="7" r="3.2" fill="#002776"/><path d="M6.9 6.3c2.1-.5 4.4-.2 6.3 1" stroke="#fff" stroke-width=".5" fill="none"/></svg><span>PT</span></button></div></div></div></header>
+
+<main id="top">
+<div class="hero">
+<h1>GYVOQ</h1>
+<div class="role" data-i18n="role">PROFESSIONAL VIDEO EDITOR</div>
+<p class="tag" data-i18n="tag">Transforming images into cinematic experiences that capture emotions and tell unique stories.</p>
+<a class="btn" href="#portfolio" data-i18n="view">View portfolio</a>
+</div>
+
+<div class="wrap">
+<section id="about">
+<div class="about">
+<div>
+<h2 data-i18n="about_h">About me</h2>
+<p data-i18n="about_p">I'm a video editor specializing in turning raw footage into professional, engaging, and high-impact content. I help creators, businesses, and digital entrepreneurs increase audience retention, build authority, and save time through strategic editing that enhances their message and keeps viewers engaged from start to finish. My work includes smart cuts, pacing, subtitles, motion graphics, and polished finishing touches to deliver videos that truly drive results.</p>
+</div>
+<div class="stats">
+<div class="stat"><b>+150</b><span data-i18n="stat1">DELIVERED PROJECTS</span></div>
+<div class="stat"><b>+5</b><span data-i18n="stat2">YEARS OF EXPERIENCE</span></div>
+</div>
+</div>
+</section>
+
+<section id="portfolio">
+<h2 data-i18n="port_h">Portfolio</h2>
+<div class="vids">
+<div class="vid v" id="vt"></div>
+<div class="hz" id="hz"></div>
+</div>
+</section>
+
+<section class="contact" id="contact">
+<h2 data-i18n="contact_h">Contact</h2>
+<p data-i18n="contact_p">Have a project in mind? Let's talk.</p>
+<div class="row">
+<a class="btn" href="https://wa.me/5512982294991" target="_blank" rel="noopener">WhatsApp</a>
+<a class="btn ghost" href="mailto:l33346177@gmail.com">E-mail</a>
+<a class="btn ghost" href="https://discord.com/users/566267146297147403" target="_blank" rel="noopener">Discord</a>
+</div>
+</section>
+</div>
+</main>
+<footer data-i18n="footer">© 2026 GYVOQ — All rights reserved</footer>
+
+<script>
+var V=[
+["Video 01","1233268293",true],
+["Video 02","1233268548"],
+["Video 03","1233268800"],
+["Video 04","1233268914"],
+["Video 05","1233269770"]];
+V.forEach(function(v){
+var h='<div class="frame '+(v[2]?'vt':'h')+'"><iframe src="https://player.vimeo.com/video/'+v[1]+'?badge=0&autopause=0&player_id=0&app_id=58479" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" loading="lazy" title="'+v[0]+'" allowfullscreen></iframe></div><h3>'+v[0]+'</h3>';
+if(v[2]){document.getElementById("vt").innerHTML=h}
+else{var d=document.createElement("div");d.className="vid";d.innerHTML=h;document.getElementById("hz").appendChild(d)}
+});
+
+var T={
+en:{title:"GYVOQ — Professional Video Editor",nav_about:"About",nav_portfolio:"Portfolio",nav_contact:"Contact",role:"PROFESSIONAL VIDEO EDITOR",tag:"Transforming images into cinematic experiences that capture emotions and tell unique stories.",view:"View portfolio",about_h:"About me",about_p:"I'm a video editor specializing in turning raw footage into professional, engaging, and high-impact content. I help creators, businesses, and digital entrepreneurs increase audience retention, build authority, and save time through strategic editing that enhances their message and keeps viewers engaged from start to finish. My work includes smart cuts, pacing, subtitles, motion graphics, and polished finishing touches to deliver videos that truly drive results.",stat1:"DELIVERED PROJECTS",stat2:"YEARS OF EXPERIENCE",port_h:"Portfolio",contact_h:"Contact",contact_p:"Have a project in mind? Let's talk.",footer:"© 2026 GYVOQ — All rights reserved"},
+pt:{title:"GYVOQ — Editor de Vídeo Profissional",nav_about:"Sobre",nav_portfolio:"Portfólio",nav_contact:"Contato",role:"EDITOR DE VÍDEO PROFISSIONAL",tag:"Transformando imagens em experiências cinematográficas que capturam emoções e contam histórias únicas.",view:"Ver portfólio",about_h:"Sobre mim",about_p:"Sou editor de vídeo e transformo material bruto em conteúdo profissional, envolvente e de alto impacto. Ajudo criadores, empresas e empreendedores digitais a aumentar a retenção da audiência, construir autoridade e economizar tempo com uma edição estratégica que reforça a mensagem e mantém o público engajado do início ao fim. Meu trabalho inclui cortes inteligentes, ritmo, legendas, motion graphics e acabamentos refinados para entregar vídeos que realmente geram resultados.",stat1:"PROJETOS ENTREGUES",stat2:"ANOS DE EXPERIÊNCIA",port_h:"Portfólio",contact_h:"Contato",contact_p:"Tem um projeto em mente? Vamos conversar.",footer:"© 2026 GYVOQ — Todos os direitos reservados"}};
+
+function detectLang(){
+try{var s=localStorage.getItem("gyvoq-lang");if(s&&T[s])return s}catch(e){}
+var l=(navigator.languages&&navigator.languages[0])||navigator.language||"";
+if(/^pt/i.test(l))return"pt";
+try{var tz=Intl.DateTimeFormat().resolvedOptions().timeZone||"";
+if(/^America\/(Sao_Paulo|Bahia|Fortaleza|Recife|Belem|Manaus|Cuiaba|Campo_Grande|Porto_Velho|Rio_Branco|Boa_Vista|Santarem|Maceio|Araguaina|Eirunepe|Noronha)$/.test(tz))return"pt"}catch(e){}
+return"en"}
+
+function setLang(lang,save){
+var d=T[lang];
+document.documentElement.lang=lang==="pt"?"pt-BR":"en";
+document.title=d.title;
+document.querySelectorAll("[data-i18n]").forEach(function(el){el.textContent=d[el.dataset.i18n]});
+document.querySelectorAll(".lang button").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.lang===lang)});
+if(save){try{localStorage.setItem("gyvoq-lang",lang)}catch(e){}}}
+document.querySelector(".lang").addEventListener("click",function(e){var b=e.target.closest("button");if(b)setLang(b.dataset.lang,true)});
+setLang(detectLang(),false);
+</script>
+<script src="https://player.vimeo.com/api/player.js"></script>
+</body>
+</html>
