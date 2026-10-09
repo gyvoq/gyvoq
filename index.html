@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="dark">
 <title>GYVOQ — Professional Video Editor</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20256%20256%22%3E%3Crect%20width=%22256%22%20height=%22256%22%20rx=%2258%22%20fill=%22%230B0B12%22/%3E%3CclipPath%20id=%22k%22%3E%3Crect%20x=%220%22%20y=%2252%22%20width=%22256%22%20height=%22204%22/%3E%3C/clipPath%3E%3Cg%20transform=%22translate(128,128)%20scale(.8)%20translate(-128,-136)%22%3E%3Cg%20clip-path=%22url(%23k)%22%3E%3Cpolyline%20points=%2226.0,30%20128,200%20230.0,30%22%20fill=%22none%22%20stroke=%22%238B5CF6%22%20stroke-width=%2215%22%20stroke-linejoin=%22miter%22%20stroke-miterlimit=%2210%22/%3E%3Cpolyline%20points=%2257.2,30%20128,148%20198.8,30%22%20fill=%22none%22%20stroke=%22%23C4B5FD%22%20stroke-width=%2215%22%20stroke-linejoin=%22miter%22%20stroke-miterlimit=%2210%22/%3E%3Cpolyline%20points=%2288.4,30%20128,96%20167.6,30%22%20fill=%22none%22%20stroke=%22%23FFFFFF%22%20stroke-width=%2215%22%20stroke-linejoin=%22miter%22%20stroke-miterlimit=%2210%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <style>
@@ -48,8 +49,9 @@ h2{font-weight:600;font-size:clamp(30px,5vw,48px);letter-spacing:-.02em;margin:0
 .stat b{display:block;font-weight:600;font-size:clamp(36px,5vw,48px);line-height:1.1;color:var(--p2)}
 .stat span{color:var(--mute);font-size:13px;letter-spacing:.12em}
 
-/* portfolio: vertical à esquerda, 4 horizontais à direita */
-.vids{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:var(--gap);align-items:start}
+/* portfolio: 2 verticais à esquerda, horizontais à direita */
+.vids{display:grid;grid-template-columns:minmax(0,460px) minmax(0,1fr);gap:var(--gap);align-items:start}
+.vt-wrap{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gap)}
 .hz{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gap)}
 .frame{position:relative;width:100%;height:0;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#000}
 .frame.vt{padding-top:177.78%}
@@ -64,7 +66,7 @@ footer{text-align:center;color:var(--mute);font-size:14px;padding:44px var(--pad
 
 @media(max-width:900px){
 .vids{grid-template-columns:1fr}
-.vid.v{max-width:320px;width:100%;margin:0 auto}
+.vt-wrap{max-width:480px;width:100%;margin:0 auto}
 }
 @media(max-width:720px){
 .about{grid-template-columns:1fr}
@@ -117,7 +119,7 @@ nav a{padding:10px 12px}
 <section id="portfolio">
 <h2 data-i18n="port_h">Portfolio</h2>
 <div class="vids">
-<div class="vid v" id="vt"></div>
+<div class="vt-wrap" id="vt"></div>
 <div class="hz" id="hz"></div>
 </div>
 </section>
@@ -138,14 +140,16 @@ nav a{padding:10px 12px}
 <script>
 var V=[
 ["Video 01","1233268293",true],
-["Video 02","1234508111"],
+["Video 02","1234508111",true],
 ["Video 03","1233268548"],
 ["Video 04","1233268800"],
 ["Video 05","1233269770"]];
 V.forEach(function(v){
 var h='<div class="frame '+(v[2]?'vt':'h')+'"><iframe src="https://player.vimeo.com/video/'+v[1]+'?badge=0&autopause=0&player_id=0&app_id=58479" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" loading="lazy" title="'+v[0]+'" allowfullscreen></iframe></div><h3>'+v[0]+'</h3>';
-if(v[2]){document.getElementById("vt").innerHTML=h}
-else{var d=document.createElement("div");d.className="vid";d.innerHTML=h;document.getElementById("hz").appendChild(d)}
+var d=document.createElement("div");
+d.className="vid"+(v[2]?" v":"");
+d.innerHTML=h;
+document.getElementById(v[2]?"vt":"hz").appendChild(d)
 });
 
 var T={
