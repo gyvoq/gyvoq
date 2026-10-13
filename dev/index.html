@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>GYVOQ — Full-Stack Developer</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20256%20256%22%3E%3Crect%20width=%22256%22%20height=%22256%22%20rx=%2258%22%20fill=%22%230B0B12%22/%3E%3CclipPath%20id=%22k%22%3E%3Crect%20x=%220%22%20y=%2252%22%20width=%22256%22%20height=%22204%22/%3E%3C/clipPath%3E%3Cg%20transform=%22translate(128,128)%20scale(.8)%20translate(-128,-136)%22%3E%3Cg%20clip-path=%22url(%23k)%22%3E%3Cpolyline%20points=%2226.0,30%20128,200%20230.0,30%22%20fill=%22none%22%20stroke=%22%238B5CF6%22%20stroke-width=%2215%22%20stroke-linejoin=%22miter%22%20stroke-miterlimit=%2210%22/%3E%3Cpolyline%20points=%2257.2,30%20128,148%20198.8,30%22%20fill=%22none%22%20stroke=%22%23C4B5FD%22%20stroke-width=%2215%22%20stroke-linejoin=%22miter%22%20stroke-miterlimit=%2210%22/%3E%3Cpolyline%20points=%2288.4,30%20128,96%20167.6,30%22%20fill=%22none%22%20stroke=%22%23FFFFFF%22%20stroke-width=%2215%22%20stroke-linejoin=%22miter%22%20stroke-miterlimit=%2210%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07050C;--panel:#110C1C;--line:#2A1F42;--ink:#F4F0FB;--mute:#A99FC0;--p:#8B5CF6;--p2:#B79BFF;--font:"Inter",system-ui,-apple-system,sans-serif;--gap:24px;--pad:clamp(18px,4vw,32px)}
+html{scroll-behavior:smooth;scroll-padding-top:76px;color-scheme:dark;background:var(--bg);-webkit-text-size-adjust:100%}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 clamp(16px,1.2vw + 12px,18px)/1.7 var(--font);padding-bottom:env(safe-area-inset-bottom,0px)}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--p2);outline-offset:3px}
+.wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 var(--pad)}
+
+header{position:sticky;top:0;z-index:10;background:rgba(7,5,12,.88);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+header .wrap{display:flex;justify-content:space-between;align-items:center;height:64px}
+.logo{font-weight:600;font-size:20px;letter-spacing:.04em}
+.right{display:flex;align-items:center;gap:10px}
+.lang{display:flex;gap:6px}
+.lang button{display:flex;align-items:center;gap:7px;min-height:40px;padding:0 12px;border-radius:999px;border:1.5px solid var(--line);background:none;color:var(--mute);font:600 13px var(--font);cursor:pointer;transition:border-color .2s,color .2s,background .2s}
+.lang button:hover{border-color:var(--p);color:var(--ink)}
+.lang button[aria-pressed=true]{border-color:var(--p);background:rgba(139,92,246,.18);color:var(--ink)}
+.lang svg{width:22px;height:15px;border-radius:3px;display:block;flex:none}
+nav{display:flex;gap:6px;font-weight:600;font-size:15px;color:var(--mute)}
+nav a{padding:10px 14px;border-radius:999px;min-height:44px;display:flex;align-items:center}
+nav a:hover{color:var(--p2);background:rgba(139,92,246,.12)}
+
+.hero{min-height:calc(100svh - 64px);min-height:calc(100vh - 64px);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:64px var(--pad)}
+h1{font-weight:600;font-size:clamp(56px,17vw,176px);line-height:.95;letter-spacing:-.04em;margin:0;background:linear-gradient(180deg,#fff 30%,var(--p2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.role{font-weight:600;font-size:clamp(12px,3.2vw,15px);letter-spacing:.3em;color:var(--p2);margin:22px 0 14px}
+.tag{max-width:46ch;color:var(--mute);font-size:clamp(16px,2.4vw,20px);margin:0 0 34px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;background:var(--p);color:#fff;padding:0 30px;border-radius:999px;border:1.5px solid var(--p);font:600 16px var(--font);cursor:pointer;transition:background .2s}
+.btn:hover{background:#A07BFF}
+.btn.ghost{background:none;color:var(--p2)}
+.btn.ghost:hover{background:rgba(139,92,246,.15)}
+
+section{padding:clamp(56px,9vw,100px) 0 0}
+h2{font-weight:600;font-size:clamp(30px,5vw,48px);letter-spacing:-.02em;margin:0 0 22px;line-height:1.1}
+
+.about{display:grid;grid-template-columns:1.7fr 1fr;gap:clamp(28px,5vw,56px);align-items:start}
+.about p{margin:0;color:var(--mute);max-width:62ch}
+.stats{display:grid;gap:16px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px 24px}
+.stat b{display:block;font-weight:600;font-size:clamp(36px,5vw,48px);line-height:1.1;color:var(--p2)}
+.stat span{color:var(--mute);font-size:13px;letter-spacing:.12em}
+
+/* skills + projects */
+
+.contact{text-align:center;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:clamp(36px,7vw,64px) var(--pad);margin-top:clamp(56px,9vw,100px)}
+.contact p{color:var(--mute);margin:0 0 28px}
+.contact .row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+footer{text-align:center;color:var(--mute);font-size:14px;padding:44px var(--pad) 40px}
+
+@media(max-width:720px){
+.about{grid-template-columns:1fr}
+.stats{grid-template-columns:1fr 1fr;gap:12px}
+.stat{padding:16px 18px}
+}
+@media(max-width:560px){
+html{scroll-padding-top:112px}
+header .wrap{flex-wrap:wrap;height:auto;padding-top:10px;padding-bottom:6px;row-gap:2px}
+.right{display:contents}
+.lang{order:2}
+nav{order:3;width:100%;justify-content:center}
+.lang button{padding:0 10px}
+nav a{padding:10px 12px}
+.contact .row{flex-direction:column}
+.contact .btn{width:100%}
+.hero .btn{width:100%;max-width:320px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+.skills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gap)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:26px 28px;transition:border-color .2s}
+.card:hover{border-color:var(--p)}
+.card h3{font-weight:600;font-size:20px;margin:0 0 4px;color:var(--ink)}
+.card .sub{color:var(--p2);font-size:12px;letter-spacing:.14em;font-weight:600;margin:0 0 14px}
+.card ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.card li{color:var(--mute);font-size:15.5px;line-height:1.55;padding-left:20px;position:relative}
+.card li:before{content:"";position:absolute;left:0;top:.68em;width:7px;height:7px;border-radius:50%;background:var(--p)}
+.stack{display:flex;flex-wrap:wrap;gap:10px;margin-top:var(--gap)}
+.chip{display:inline-flex;align-items:center;min-height:42px;padding:0 18px;border-radius:999px;border:1.5px solid var(--line);background:var(--panel);font-weight:600;font-size:15px;color:var(--ink);transition:border-color .2s,background .2s}
+.chip:hover{border-color:var(--p);background:rgba(139,92,246,.14)}
+.projects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gap);align-items:stretch}
+.proj{display:flex;flex-direction:column}
+.proj .num{color:var(--p2);font-weight:600;font-size:13px;letter-spacing:.14em;margin-bottom:8px}
+.proj ul{margin-bottom:22px}
+.proj .links{margin-top:auto;display:flex;flex-wrap:wrap;gap:10px}
+.proj .btn{min-height:42px;padding:0 20px;font-size:14.5px}
+.code{margin:0 0 18px;padding:12px 16px;border-radius:12px;border:1px dashed var(--p);background:rgba(139,92,246,.1);color:var(--mute);font-size:14px}
+.code b{color:var(--p2);letter-spacing:.12em}
+
+@media(max-width:720px){.skills,.projects{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><a class="logo" href="#top">GYVOQ</a>
+<div class="right"><nav><a href="#about" data-i18n="nav_about">About</a><a href="#skills" data-i18n="nav_skills">Skills</a><a href="#projects" data-i18n="nav_projects">Projects</a><a href="#contact" data-i18n="nav_contact">Contact</a></nav>
+<div class="lang" role="group" aria-label="Language"><button type="button" data-lang="en" aria-pressed="true" aria-label="English"><svg viewBox="0 0 19 10" aria-hidden="true"><rect width="19" height="10" fill="#fff"/><g fill="#B22234"><rect width="19" height=".77"/><rect y="1.54" width="19" height=".77"/><rect y="3.08" width="19" height=".77"/><rect y="4.62" width="19" height=".77"/><rect y="6.15" width="19" height=".77"/><rect y="7.69" width="19" height=".77"/><rect y="9.23" width="19" height=".77"/></g><rect width="7.6" height="5.4" fill="#3C3B6E"/><g fill="#fff"><circle cx="1.3" cy="1.1" r=".38"/><circle cx="3.8" cy="1.1" r=".38"/><circle cx="6.3" cy="1.1" r=".38"/><circle cx="2.5" cy="2.7" r=".38"/><circle cx="5" cy="2.7" r=".38"/><circle cx="1.3" cy="4.3" r=".38"/><circle cx="3.8" cy="4.3" r=".38"/><circle cx="6.3" cy="4.3" r=".38"/></g></svg><span>EN</span></button><button type="button" data-lang="pt" aria-pressed="false" aria-label="Português"><svg viewBox="0 0 20 14" aria-hidden="true"><rect width="20" height="14" fill="#009C3B"/><path d="M10 1.6 18.2 7 10 12.4 1.8 7z" fill="#FFDF00"/><circle cx="10" cy="7" r="3.2" fill="#002776"/><path d="M6.9 6.3c2.1-.5 4.4-.2 6.3 1" stroke="#fff" stroke-width=".5" fill="none"/></svg><span>PT</span></button></div></div></div></header>
+
+<main id="top">
+<div class="hero">
+<h1>GYVOQ</h1>
+<div class="role" data-i18n="role">FULL-STACK DEVELOPER</div>
+<p class="tag" data-i18n="tag"></p>
+<a class="btn" href="#projects" data-i18n="view">View projects</a>
+</div>
+
+<div class="wrap">
+<section id="about">
+<div class="about">
+<div>
+<h2 data-i18n="about_h">About me</h2>
+<p data-i18n="about_p"></p>
+</div>
+<div class="stats">
+<div class="stat"><b>+3</b><span data-i18n="stat1">LIVE PROJECTS</span></div>
+<div class="stat"><b>360°</b><span data-i18n="stat2">FRONT TO BACK</span></div>
+</div>
+</div>
+</section>
+
+<section id="skills">
+<h2 data-i18n="skills_h">Skills</h2>
+<div class="skills"><div class="card"><h3 data-i18n="s1_h"></h3><p class="sub" data-i18n="s1_s"></p><ul><li data-i18n="s1_a"></li><li data-i18n="s1_b"></li><li data-i18n="s1_c"></li><li data-i18n="s1_d"></li></ul></div><div class="card"><h3 data-i18n="s2_h"></h3><p class="sub" data-i18n="s2_s"></p><ul><li data-i18n="s2_a"></li><li data-i18n="s2_b"></li><li data-i18n="s2_c"></li><li data-i18n="s2_d"></li></ul></div><div class="card"><h3 data-i18n="s3_h"></h3><p class="sub" data-i18n="s3_s"></p><ul><li data-i18n="s3_a"></li><li data-i18n="s3_b"></li><li data-i18n="s3_c"></li><li data-i18n="s3_d"></li></ul></div><div class="card"><h3 data-i18n="s4_h"></h3><p class="sub" data-i18n="s4_s"></p><ul><li data-i18n="s4_a"></li><li data-i18n="s4_b"></li><li data-i18n="s4_c"></li><li data-i18n="s4_d"></li></ul></div></div>
+<div class="stack" aria-label="Tech stack"><span class="chip">JavaScript</span><span class="chip">Flutter</span><span class="chip">C++</span><span class="chip">Next.js</span><span class="chip">MongoDB</span><span class="chip">Vercel</span></div>
+</section>
+
+<section id="projects">
+<h2 data-i18n="proj_h">Projects</h2>
+<div class="projects"><div class="card proj"><div class="num">01</div><h3>Viralyze</h3><ul style="margin-top:10px"><li data-i18n="p1_a"></li><li data-i18n="p1_b"></li><li data-i18n="p1_c"></li></ul><p class="code"><span data-i18n="code_l"></span> <b>JVYCC</b></p><div class="links"><a class="btn" href="https://viralyze-tok.vercel.app" target="_blank" rel="noopener" data-i18n="live"></a><a class="btn ghost" href="https://github.com/gyvoq/nexai-frontend" target="_blank" rel="noopener">GitHub</a></div></div><div class="card proj"><div class="num">02</div><h3>EnglishPro</h3><ul style="margin-top:10px"><li data-i18n="p4_a"></li><li data-i18n="p4_b"></li><li data-i18n="p4_c"></li></ul><div class="links"><a class="btn" href="https://englishpre.vercel.app/" target="_blank" rel="noopener" data-i18n="live"></a><a class="btn ghost" href="https://github.com/gyvoq/englishpre" target="_blank" rel="noopener">GitHub</a></div></div><div class="card proj"><div class="num">03</div><h3>Apple Wallet</h3><ul style="margin-top:10px"><li data-i18n="p2_a"></li><li data-i18n="p2_b"></li><li data-i18n="p2_c"></li></ul><div class="links"><a class="btn" href="https://wallet-larp.vercel.app" target="_blank" rel="noopener" data-i18n="live"></a><a class="btn ghost" href="https://github.com/gyvoq/apple-wallet" target="_blank" rel="noopener">GitHub</a></div></div><div class="card proj"><div class="num">04</div><h3>YouTube Studio</h3><ul style="margin-top:10px"><li data-i18n="p3_a"></li><li data-i18n="p3_b"></li><li data-i18n="p3_c"></li></ul><div class="links"><a class="btn" href="https://ytstudio-larp.vercel.app/" target="_blank" rel="noopener" data-i18n="live"></a><a class="btn ghost" href="https://github.com/gyvoq/ytstudio-larp" target="_blank" rel="noopener">GitHub</a></div></div></div>
+</section>
+
+<section class="contact" id="contact">
+<h2 data-i18n="contact_h">Contact</h2>
+<p data-i18n="contact_p"></p>
+<div class="row">
+<a class="btn" href="https://wa.me/5512982294991" target="_blank" rel="noopener">WhatsApp</a>
+<a class="btn ghost" href="mailto:l33346177@gmail.com">E-mail</a>
+<a class="btn ghost" href="https://discord.com/users/566267146297147403" target="_blank" rel="noopener">Discord</a>
+</div>
+</section>
+</div>
+</main>
+<footer data-i18n="footer"></footer>
+
+<script>
+var T={
+en:{title:"GYVOQ — Full-Stack Developer",nav_about:"About",nav_skills:"Skills",nav_projects:"Projects",nav_contact:"Contact",role:"FULL-STACK DEVELOPER",tag:"I build fast, polished and scalable products, from the pixel to the database.",view:"View projects",
+about_h:"About me",about_p:"I'm a developer who takes a product from idea to production on my own. I design the interface, build the frontend, wire up the backend and ship it live, always obsessed with performance, clean code and an experience that feels premium. I turn complex problems into simple, fast and scalable products that people actually enjoy using.",
+stat1:"LIVE PROJECTS",stat2:"FRONT TO BACK",
+skills_h:"Skills",
+s1_h:"Development",s1_s:"FULL-STACK",s1_a:"End-to-end products, from idea to deploy",s1_b:"Clean, scalable and maintainable architecture",s1_c:"Web, mobile and native-level performance",s1_d:"Fast iteration, shipping production-ready code",
+s2_h:"Frontend",s2_s:"INTERFACES",s2_a:"JavaScript, Next.js and modern component systems",s2_b:"Pixel-perfect, responsive and accessible layouts",s2_c:"Smooth animations and micro-interactions",s2_d:"Cross-platform apps with Flutter",
+s3_h:"Backend",s3_s:"SERVER & DATA",s3_a:"APIs, authentication and business logic",s3_b:"MongoDB modeling and query optimization",s3_c:"High-performance systems with C++",s3_d:"Serverless deploys and CI/CD on Vercel",
+s4_h:"UI / UX",s4_s:"DESIGN",s4_a:"Interface design and interactive prototyping",s4_b:"Design systems and consistent visual identity",s4_c:"User flows focused on conversion and retention",s4_d:"Mobile-first, dark-mode-ready experiences",
+proj_h:"Projects",live:"Live demo",code_l:"Access code:",
+p1_a:"SaaS for viral products, AI avatars and image/video prompt generation",p1_b:"Full dashboard with multiple creation tools",p1_c:"Responsive frontend built for conversion",
+p2_a:"Faithful Apple Wallet app clone",p2_b:"Smooth card interactions and animations",p2_c:"Mobile-first, deployed on Vercel",
+p4_a:"English practice app with questions explained in Portuguese",p4_b:"Free trial with paid access to the full question bank",p4_c:"Clean study flow built for learning and retention",p3_a:"Pixel-accurate YouTube Studio clone",p3_b:"Channel analytics dashboard with dark theme",p3_c:"Single-file, lightweight and fast",
+contact_h:"Contact",contact_p:"Have a project in mind? Let's build it.",footer:"© 2026 GYVOQ — All rights reserved"},
+pt:{title:"GYVOQ — Desenvolvedor Full-Stack",nav_about:"Sobre",nav_skills:"Habilidades",nav_projects:"Projetos",nav_contact:"Contato",role:"DESENVOLVEDOR FULL-STACK",tag:"Construo produtos rápidos, polidos e escaláveis, do pixel ao banco de dados.",view:"Ver projetos",
+about_h:"Sobre mim",about_p:"Sou desenvolvedor e levo um produto da ideia à produção sozinho. Projeto a interface, construo o frontend, conecto o backend e coloco no ar, sempre obcecado por performance, código limpo e uma experiência com cara de premium. Transformo problemas complexos em produtos simples, rápidos e escaláveis que as pessoas realmente gostam de usar.",
+stat1:"PROJETOS NO AR",stat2:"DO FRONT AO BACK",
+skills_h:"Habilidades",
+s1_h:"Desenvolvimento",s1_s:"FULL-STACK",s1_a:"Produtos de ponta a ponta, da ideia ao deploy",s1_b:"Arquitetura limpa, escalável e fácil de manter",s1_c:"Web, mobile e performance de nível nativo",s1_d:"Iteração rápida entregando código pronto pra produção",
+s2_h:"Frontend",s2_s:"INTERFACES",s2_a:"JavaScript, Next.js e sistemas de componentes modernos",s2_b:"Layouts pixel-perfect, responsivos e acessíveis",s2_c:"Animações fluidas e microinterações",s2_d:"Apps multiplataforma com Flutter",
+s3_h:"Backend",s3_s:"SERVIDOR & DADOS",s3_a:"APIs, autenticação e regras de negócio",s3_b:"Modelagem e otimização de queries no MongoDB",s3_c:"Sistemas de alta performance com C++",s3_d:"Deploys serverless e CI/CD na Vercel",
+s4_h:"UI / UX",s4_s:"DESIGN",s4_a:"Design de interfaces e protótipos interativos",s4_b:"Design systems e identidade visual consistente",s4_c:"Fluxos de usuário focados em conversão e retenção",s4_d:"Experiências mobile-first e prontas pro modo escuro",
+proj_h:"Projetos",live:"Ver ao vivo",code_l:"Código de acesso:",
+p1_a:"SaaS de produtos virais, avatares com IA e geração de prompts de imagem/vídeo",p1_b:"Dashboard completo com várias ferramentas de criação",p1_c:"Frontend responsivo feito para conversão",
+p2_a:"Clone fiel do app Apple Wallet",p2_b:"Interações e animações fluidas nos cartões",p2_c:"Mobile-first, publicado na Vercel",
+p4_a:"App de questões de inglês com explicação em português",p4_b:"Teste grátis e acesso pago ao banco completo de questões",p4_c:"Fluxo de estudo limpo, feito para aprender e reter",p3_a:"Clone pixel-perfect do YouTube Studio",p3_b:"Dashboard de analytics do canal em tema escuro",p3_c:"Arquivo único, leve e rápido",
+contact_h:"Contato",contact_p:"Tem um projeto em mente? Vamos construir.",footer:"© 2026 GYVOQ — Todos os direitos reservados"}};
+
+function detectLang(){
+try{var s=localStorage.getItem("gyvoq-lang");if(s&&T[s])return s}catch(e){}
+var list=(navigator.languages&&navigator.languages.length)?navigator.languages:[navigator.language||""];
+for(var i=0;i<list.length;i++){
+var c=String(list[i]).toLowerCase().slice(0,2);
+if(c==="pt")return"pt";
+if(c==="en")return"en";
+}
+return"en"}
+
+function setLang(lang,save){
+var d=T[lang];
+document.documentElement.lang=lang==="pt"?"pt-BR":"en";
+document.title=d.title;
+document.querySelectorAll("[data-i18n]").forEach(function(el){el.textContent=d[el.dataset.i18n]});
+document.querySelectorAll(".lang button").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.lang===lang)});
+if(save){try{localStorage.setItem("gyvoq-lang",lang)}catch(e){}}}
+document.querySelector(".lang").addEventListener("click",function(e){var b=e.target.closest("button");if(b)setLang(b.dataset.lang,true)});
+setLang(detectLang(),false);
+</script>
+</body>
+</html>
