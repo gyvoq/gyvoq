@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="dark">
 <title>GYVOQ — Editor de Vídeo Profissional</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20256%20256%22%3E%3Crect%20width=%22256%22%20height=%22256%22%20rx=%2258%22%20fill=%22%230B0B12%22/%3E%3CclipPath%20id=%22k%22%3E%3Crect%20x=%220%22%20y=%2252%22%20width=%22256%22%20height=%22204%22/%3E%3C/clipPath%3E%3Cg%20transform=%22translate(128,128)%20scale(.8)%20translate(-128,-136)%22%3E%3Cg%20clip-path=%22url(%23k)%22%3E%3Cpolyline%20points=%2226.0,30%20128,200%20230.0,30%22%20fill=%22none%22%20stroke=%22%238B5CF6%22%20stroke-width=%2215%22%20stroke-linejoin=%22miter%22%20stroke-miterlimit=%2210%22/%3E%3Cpolyline%20points=%2257.2,30%20128,148%20198.8,30%22%20fill=%22none%22%20stroke=%22%23C4B5FD%22%20stroke-width=%2215%22%20stroke-linejoin=%22miter%22%20stroke-miterlimit=%2210%22/%3E%3Cpolyline%20points=%2288.4,30%20128,96%20167.6,30%22%20fill=%22none%22%20stroke=%22%23FFFFFF%22%20stroke-width=%2215%22%20stroke-linejoin=%22miter%22%20stroke-miterlimit=%2210%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <style>
@@ -156,6 +157,7 @@ document.querySelectorAll("[data-i18n]").forEach(function(el){el.textContent=d[e
 document.querySelectorAll(".lang button").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.lang===lang)});
 if(save){try{localStorage.setItem("gyvoq-lang",lang)}catch(e){}}}
 document.querySelector(".lang").addEventListener("click",function(e){var b=e.target.closest("button");if(b)setLang(b.dataset.lang,true)});
+document.addEventListener("click",function(e){var a=e.target.closest('a[href^="#"]');if(!a)return;var id=a.getAttribute("href").slice(1);var t=id==="top"?document.body:document.getElementById(id);if(!t)return;e.preventDefault();var r=window.matchMedia("(prefers-reduced-motion: reduce)").matches;if(id==="top"){window.scrollTo({top:0,behavior:r?"auto":"smooth"})}else{t.scrollIntoView({behavior:r?"auto":"smooth",block:"start"})}});
 setLang(detectLang(),false);
 </script>
 </body>
