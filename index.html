@@ -148,7 +148,7 @@ function detectLang(){
 try{var s=localStorage.getItem("gyvoq-lang");if(s&&T[s])return s}catch(e){}
 var l=(navigator.languages&&navigator.languages.length)?navigator.languages:[navigator.language||""];
 for(var i=0;i<l.length;i++){var c=String(l[i]).toLowerCase().slice(0,2);if(c==="pt")return"pt";if(c==="en")return"en"}
-return"pt"}
+return"en"}
 function setLang(lang,save){
 var d=T[lang];
 document.documentElement.lang=lang==="pt"?"pt-BR":"en";
